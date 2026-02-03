@@ -12,6 +12,18 @@
     z-index: 1100;
 }
 
+
+
+
+
+/* MOBIL – ZÁKLAD (skryté menu) */
+.nav ul {
+    list-style: none;
+    display: none;
+    flex-direction: column;
+    gap: 0;
+}
+
 @media (max-width: 900px) {
 
     .menu-toggle {
@@ -35,6 +47,7 @@
         display: flex;
     }
 
+
     .nav ul li {
         border-bottom: 1px solid rgba(255,255,255,0.1);
     }
@@ -45,6 +58,167 @@
         font-size: 16px;
     }
 }
+/* DESKTOP MENU (nad 901px) */
+@media (min-width: 901px) {
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .nav ul {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between; /* roztiahne menu do šírky */
+        gap: 40px; /* väčšie medzery medzi položkami */
+        background: none;
+        position: static;
+        height: auto;
+        white-space: nowrap; /* zabráni zalamovaniu */
+    }
+
+.nav ul li a {
+    font-size: 17px;      /* väčšie písmo */
+    font-weight: 600;     /* výraznejší a hrubší text */
+    color: #ffffff;       /* jasnejší kontrast */
+    padding: 10px 6px;    /* lepšie centrovanie */
+    display: flex;
+    align-items: center;  /* vertikálne vycentrovanie */
+    justify-content: center; /* horizontálne vycentrovanie */
+    transition: color 0.3s;
+}
+}
+/* ===================== EXTRA VISUAL BOOST ===================== */
+
+.section, .section-alt {
+    position: relative;
+}
+
+.section::before, .section-alt::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom right,
+        rgba(37, 99, 235, 0.05),
+        rgba(255, 255, 255, 0.05)
+    );
+    pointer-events: none;
+    z-index: 0;
+}
+
+.section > *, .section-alt > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Moderné podčiarknutie nadpisov */
+h2 {
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    display: block;
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+/* Fade-in animácia */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Card hover efekt */
+.stress-card:hover,
+.regeneration-card:hover,
+.recommendation-card:hover,
+.meal-card:hover,
+.training-day:hover,
+.help-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    transition: 0.3s ease;
+}
+
+/* Shine efekt na tlačidlách */
+.btn-primary {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 80%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        rgba(255,255,255,0.2),
+        rgba(255,255,255,0)
+    );
+    transform: skewX(-20deg);
+}
+
+.btn-primary:hover::after {
+    left: 150%;
+    transition: 0.6s ease;
+}
+
+/* Spoločný kontajner pre obe tlačidlá */
+#floating-buttons {
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    display: flex;
+    gap: 14px;         
+    z-index: 99999;
+}
+
+/* Tlačidlo Light/Dark */
+#themeToggle {
+    padding: 12px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* Šípka hore */
+#scrollTop {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    display: none; 
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+
+
+
 </style>
 
 
@@ -101,6 +275,48 @@
             margin: 0 auto;
             padding: 0 24px;
         }
+/* ===== REAL DARK MODE ===== */
+
+body.dark {
+    background-color: #0b1220;
+    color: #f1f5f9; /* výraznejšie, jasnejšie, viditeľné */
+}
+
+/* Nadpisy v dark mode */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+    color: #ffffff; /* čistá biela pre perfektný kontrast */
+}
+
+/* Odstavce a bežný text */
+body.dark p,
+body.dark li,
+body.dark span,
+body.dark a {
+    color: #f1f5f9; /* svetlošedá, výborne čitateľná */
+}
+
+/* Kardy (boxíky) – text */
+body.dark .stress-card,
+body.dark .regeneration-card,
+body.dark .recommendation-card,
+body.dark .meal-card,
+body.dark .training-day,
+body.dark .help-card,
+body.dark .prevention-box {
+    color: #f1f5f9;
+}
+
+/* Sekcie v dark móde */
+body.dark .section,
+body.dark .section-alt {
+    background-color: #0f172a;
+}
+
 
         /* ================= HEADER ================= */
 
@@ -109,7 +325,7 @@
             width: 100%;
             top: 0;
             left: 0;
-            z-index: 100;
+            z-index: 10000;
             background: rgba(15, 23, 42, 0.85);
             backdrop-filter: blur(6px);
         }
@@ -130,11 +346,7 @@
             letter-spacing: 0.5px;
         }
 
-        .nav ul {
-    list-style: none;
-    display: flex;      /* ← MUSÍ TU BYŤ */
-    gap: 32px;
-}
+        
 
 
 
@@ -162,6 +374,8 @@
                 ),
                 url("students-stress.jpg") center / cover no-repeat;
             padding-top: 72px;
+           background-attachment: scroll;
+           position: relative;
         }
 
         .hero-content {
@@ -230,23 +444,30 @@
 </head>
 
 <body>
+<div id="floating-buttons">
+    <button id="themeToggle">🌙</button>
+    <button id="scrollTop">⬆</button>
+</div>
 
 <header>
 <div class="container nav">
-    <div class="logo">Duševné zdravie študentov</div>
+    
 
     <button class="menu-toggle" onclick="toggleMenu()">☰</button>
 
    <ul id="nav-menu">
     <li><a href="#uvod" onclick="closeMenu()">Úvod</a></li>
     <li><a href="#stres" onclick="closeMenu()">Stres</a></li>
-    <li><a href="#pohyb" onclick="closeMenu()">Pohyb</a></li>
-
     <li><a href="#dusevne-zdravie" onclick="closeMenu()">Duševné zdravie</a></li>
-    <li><a href="#zivotny-styl" onclick="closeMenu()">Životný štýl</a></li>
-    <li><a href="#test" onclick="closeMenu()">Test stresu</a></li>
+    <li><a href="#zivotny-styl" onclick="closeMenu()">Zdravý životný štýl</a></li>
+    <li><a href="#regeneracia" onclick="closeMenu()">Regenerácia</a></li>
+    <li><a href="#pohyb" onclick="closeMenu()">Pohyb</a></li>
+    <li><a href="#prevencia" onclick="closeMenu()">Prevencia</a></li>
+    <li><a href="#mental" onclick="closeMenu()">Záver</a></li>
+    <li><a href="#test" onclick="closeMenu()">Test</a></li>
     <li><a href="#pomoc" onclick="closeMenu()">Pomoc</a></li>
 </ul>
+
 
 
     <button class="ai-btn" onclick="toggleAI()">AI Asistent</button>
@@ -287,6 +508,9 @@
 <section class="hero" id="uvod">
     <div class="container">
         <div class="hero-content">
+           
+
+
             <h1>
                 Vplyv stresu<br>
                 na duševné zdravie<br>
@@ -1801,6 +2025,43 @@
     background: var(--primary);
     cursor: pointer;
 }
+/* ===== DARK MODE — VIDITEĽNÝ TEXT V BUBLINÁCH ===== */
+
+body.dark .stress-card,
+body.dark .regeneration-card,
+body.dark .recommendation-card,
+body.dark .meal-card,
+body.dark .training-day,
+body.dark .help-card,
+body.dark .prevention-box,
+body.dark .important-note,
+body.dark .final-note {
+    color: #1e293b !important;  /* tmavý text → dobre čitateľný */
+}
+
+body.dark .stress-card p,
+body.dark .regeneration-card p,
+body.dark .recommendation-card p,
+body.dark .meal-card p,
+body.dark .training-day p,
+body.dark .help-card p,
+body.dark .prevention-box p,
+body.dark .important-note p,
+body.dark .final-note p,
+body.dark .stress-card li,
+body.dark .training-day li,
+body.dark .meal span {
+    color: #334155 !important; /* mierne tmavšia šedá */
+}
+
+body.dark .stress-card h3,
+body.dark .regeneration-card h3,
+body.dark .recommendation-card h4,
+body.dark .meal-card h3,
+body.dark .training-day h3,
+body.dark .help-card h3 {
+    color: #0f172a !important; /* veľmi dobre viditeľné nadpisy */
+}
 
 </style>
 <footer>
@@ -1935,16 +2196,49 @@ function generateResponse(text) {
     });
 </script>
 
-<script>
-function toggleMenu() {
-    document.getElementById("nav-menu").classList.toggle("show");
-}
 
-function closeMenu() {
-    document.getElementById("nav-menu").classList.remove("show");
-}
+<script>
+const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+        if(entry.isIntersecting){
+            entry.target.classList.add("fade-in-visible");
+        }
+    });
+},{
+    threshold: 0.15
+});
+
+document.querySelectorAll(".fade-in").forEach(el=>{
+    observer.observe(el);
+});
 </script>
 
 
+
+<!-- DARK / LIGHT LOGIC -->
+<script>
+const toggleBtn = document.getElementById("themeToggle");
+
+toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+    toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+});
+</script>
+
+<!-- BACK TO TOP BUTTON LOGIC -->
+<script>
+const scrollBtn = document.getElementById("scrollTop");
+
+window.addEventListener("scroll", () => {
+    scrollBtn.style.display = window.scrollY > 400 ? "flex" : "none";
+});
+
+scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
+</script>
 </body>
 </html>
